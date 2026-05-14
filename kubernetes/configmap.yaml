@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  # Database settings for the backend
+  DB_HOST: postgres
+  DB_PORT: "5432"
+  DB_NAME: userdb
+  # Backend settings
+  BACKEND_PORT: "3000"
+  CORS_ORIGIN: "*"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+data:
+  # Runtime config file served by Nginx at /config.js
+  config.js: |
+    window.__CONFIG__ = {
+      API_URL: "/api"
+    };
