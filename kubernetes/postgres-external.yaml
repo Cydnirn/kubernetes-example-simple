@@ -1,0 +1,14 @@
+# mysql-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: postgres-service
+  name: postgres-service
+spec:
+  externalName: YOUR_RDS_ENDPOINT.rds.amazonaws.com
+  selector:
+    app: postgres-service
+  type: ExternalName
+status:
+  loadBalancer: {}

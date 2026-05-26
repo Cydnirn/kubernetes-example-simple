@@ -12,9 +12,18 @@ spec:
       labels:
         app: backend
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - frontend
       containers:
         - name: backend
-          image: localhost/simple-backend:latest
+          image: 284845684968.dkr.ecr.us-east-1.amazonaws.com/simple:backend
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
